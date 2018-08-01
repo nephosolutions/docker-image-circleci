@@ -99,9 +99,9 @@ RUN apk add --no-cache --update \
 COPY requirements*.txt /tmp/
 
 RUN if [ "${REQUIREMENTS}" == "frozen" ]; then \
-      pip install --requirement /tmp/requirements-frozen.txt; \
+      pip install --quiet --requirement /tmp/requirements-frozen.txt; \
     else \
-      pip install --upgrade --requirement /tmp/requirements.txt; \
+      pip install --quiet --upgrade --requirement /tmp/requirements.txt; \
     fi
 
 
