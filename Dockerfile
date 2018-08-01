@@ -19,13 +19,13 @@ FROM alpine:${ALPINE_VERSION} as google
 WORKDIR /tmp
 
 ARG CLOUD_SDK_VERSION
-ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-204.0.0}
+ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-210.0.0}
 
 ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 RUN tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
 ARG KUBE_VERSION
-ENV KUBE_VERSION ${KUBE_VERSION:-1.10.4}
+ENV KUBE_VERSION ${KUBE_VERSION:-1.11.1}
 
 WORKDIR /usr/local/bin
 
@@ -44,7 +44,7 @@ COPY hashicorp-releases-public-key.asc .
 RUN gpg --import hashicorp-releases-public-key.asc
 
 ARG PACKER_VERSION
-ENV PACKER_VERSION ${PACKER_VERSION:-1.2.4}
+ENV PACKER_VERSION ${PACKER_VERSION:-1.2.5}
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip packer_${PACKER_VERSION}_linux_amd64.zip
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS.sig packer_${PACKER_VERSION}_SHA256SUMS.sig
@@ -68,7 +68,7 @@ RUN grep linux_amd64 terraform_${TERRAFORM_VERSION}_SHA256SUMS >terraform_${TERR
 RUN sha256sum -cs terraform_${TERRAFORM_VERSION}_SHA256SUMS_linux_amd64
 
 ARG TERRAFORM_PROVIDER_ACME_VERSION
-ENV TERRAFORM_PROVIDER_ACME_VERSION ${TERRAFORM_PROVIDER_ACME_VERSION:-0.5.0}
+ENV TERRAFORM_PROVIDER_ACME_VERSION ${TERRAFORM_PROVIDER_ACME_VERSION:-1.0.0}
 
 ADD https://github.com/vancluever/terraform-provider-acme/releases/download/v${TERRAFORM_PROVIDER_ACME_VERSION}/terraform-provider-acme_v${TERRAFORM_PROVIDER_ACME_VERSION}_linux_amd64.zip terraform-provider-acme_v${TERRAFORM_PROVIDER_ACME_VERSION}_linux_amd64.zip
 
@@ -147,4 +147,3 @@ USER circleci
 WORKDIR /home/circleci
 
 COPY --from=hashicorp --chown=circleci:circleci /tmp/terraform.d .terraform.d
-
