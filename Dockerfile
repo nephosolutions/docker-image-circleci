@@ -19,13 +19,13 @@ FROM alpine:${ALPINE_VERSION} as google
 WORKDIR /tmp
 
 ARG CLOUD_SDK_VERSION
-ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-210.0.0}
+ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-213.0.0}
 
 ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 RUN tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
 ARG KUBE_VERSION
-ENV KUBE_VERSION ${KUBE_VERSION:-1.11.1}
+ENV KUBE_VERSION ${KUBE_VERSION:-1.11.2}
 
 WORKDIR /usr/local/bin
 
@@ -56,7 +56,7 @@ RUN grep linux_amd64 packer_${PACKER_VERSION}_SHA256SUMS > packer_${PACKER_VERSI
 RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS_linux_amd64
 
 ARG TERRAFORM_VERSION
-ENV TERRAFORM_VERSION ${TERRAFORM_VERSION:-0.11.7}
+ENV TERRAFORM_VERSION ${TERRAFORM_VERSION:-0.11.8}
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
