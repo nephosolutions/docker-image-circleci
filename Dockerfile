@@ -56,7 +56,7 @@ RUN grep linux_amd64 packer_${PACKER_VERSION}_SHA256SUMS > packer_${PACKER_VERSI
 RUN sha256sum -cs packer_${PACKER_VERSION}_SHA256SUMS_linux_amd64
 
 ARG TERRAFORM_VERSION
-ENV TERRAFORM_VERSION ${TERRAFORM_VERSION:-0.11.9}
+ENV TERRAFORM_VERSION ${TERRAFORM_VERSION:-0.11.10}
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
