@@ -13,6 +13,7 @@
 #   limitations under the License.
 
 ARG ALPINE_VERSION=3.8
+ARG RUBY_VERSION=2.5.3
 
 FROM alpine:${ALPINE_VERSION} as google
 
@@ -107,7 +108,7 @@ RUN if [ "${REQUIREMENTS}" == "frozen" ]; then \
     fi
 
 
-FROM alpine:${ALPINE_VERSION}
+FROM ruby:${RUBY_VERSION}-alpine${ALPINE_VERSION}
 LABEL maintainer="sebastian@nephosolutions.com"
 
 RUN addgroup circleci && \
@@ -115,6 +116,7 @@ RUN addgroup circleci && \
 
 RUN apk add --no-cache --update \
   bash \
+  build-base \
   ca-certificates \
   git \
   groff \
