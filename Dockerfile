@@ -111,6 +111,9 @@ RUN if [ "${REQUIREMENTS}" == "frozen" ]; then \
 FROM ruby:${RUBY_VERSION}-alpine${ALPINE_VERSION}
 LABEL maintainer="sebastian@nephosolutions.com"
 
+ARG GIT_CRYPT_VERSION
+ENV GIT_CRYPT_VERSION ${GIT_CRYPT_VERSION:-0.6.0-r0}
+
 RUN addgroup circleci && \
     adduser -G circleci -D circleci
 
@@ -130,6 +133,10 @@ RUN apk add --no-cache --update \
   python
 
 RUN ln -s /lib /lib64
+
+ADD https://raw.githubusercontent.com/sgerrand/alpine-pkg-git-crypt/master/sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
+ADD https://github.com/sgerrand/alpine-pkg-git-crypt/releases/download/${GIT_CRYPT_VERSION}/git-crypt-${GIT_CRYPT_VERSION}.apk /var/cache/apk/
+RUN apk add /var/cache/apk/git-crypt-${GIT_CRYPT_VERSION}.apk
 
 COPY --from=google /tmp/google-cloud-sdk /opt/google/cloud-sdk
 ENV PATH /opt/google/cloud-sdk/bin:$PATH
