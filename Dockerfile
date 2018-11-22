@@ -20,7 +20,7 @@ FROM alpine:${ALPINE_VERSION} as google
 WORKDIR /tmp
 
 ARG CLOUD_SDK_VERSION
-ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-221.0.0}
+ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION:-225.0.0}
 
 ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 RUN tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
