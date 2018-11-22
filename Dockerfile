@@ -26,7 +26,7 @@ ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-
 RUN tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
 ARG KUBE_VERSION
-ENV KUBE_VERSION ${KUBE_VERSION:-1.12.0}
+ENV KUBE_VERSION ${KUBE_VERSION:-1.12.2}
 
 WORKDIR /usr/local/bin
 
@@ -45,7 +45,7 @@ COPY hashicorp-releases-public-key.asc .
 RUN gpg --import hashicorp-releases-public-key.asc
 
 ARG PACKER_VERSION
-ENV PACKER_VERSION ${PACKER_VERSION:-1.3.1}
+ENV PACKER_VERSION ${PACKER_VERSION:-1.3.2}
 
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip packer_${PACKER_VERSION}_linux_amd64.zip
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS.sig packer_${PACKER_VERSION}_SHA256SUMS.sig
