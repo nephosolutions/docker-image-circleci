@@ -154,6 +154,7 @@ COPY --from=python /usr/bin/aws* /usr/bin/
 COPY --from=python /usr/lib/python2.7 /usr/lib/python2.7
 
 USER circleci
+ENV USER circleci
 
 WORKDIR /home/circleci
 
