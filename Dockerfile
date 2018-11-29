@@ -19,11 +19,11 @@ FROM alpine:${ALPINE_VERSION} as google
 
 WORKDIR /tmp
 
-ARG CLOUD_SDK_VERSION
-ENV CLOUD_SDK_VERSION ${CLOUD_SDK_VERSION}
+ARG GCLOUD_SDK_VERSION
+ENV GCLOUD_SDK_VERSION ${GCLOUD_SDK_VERSION}
 
-ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
-RUN tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
+ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz
+RUN tar -xzf google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
 ARG KUBE_VERSION
 ENV KUBE_VERSION ${KUBE_VERSION}
