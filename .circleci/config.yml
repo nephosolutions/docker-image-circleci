@@ -39,7 +39,9 @@ jobs:
             for app in ansible aws gcloud packer terraform; do
               docker run --rm ${DOCKER_IMAGE_OWNER}/${DOCKER_IMAGE_NAME} ${app} --version
             done
-            docker run --rm ${DOCKER_IMAGE_OWNER}/${DOCKER_IMAGE_NAME} kubectl version --client
+            for app in kubectl helm; do
+              docker run --rm ${DOCKER_IMAGE_OWNER}/${DOCKER_IMAGE_NAME} ${app} version --client
+            done
       - deploy:
           name: Tag and push Docker image
           command: |

@@ -25,6 +25,14 @@ ENV GCLOUD_SDK_VERSION ${GCLOUD_SDK_VERSION}
 ADD https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 RUN tar -xzf google-cloud-sdk-${GCLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
+ARG HELM_VERSION
+ENV HELM_VERSION ${HELM_VERSION}
+
+WORKDIR /tmp/kubernetes-helm
+
+ADD https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz helm-${HELM_VERSION}-linux-amd64.tar.gz
+RUN tar -xzf helm-${HELM_VERSION}-linux-amd64.tar.gz
+
 ARG KUBE_VERSION
 ENV KUBE_VERSION ${KUBE_VERSION}
 
@@ -140,6 +148,9 @@ RUN apk add /var/cache/apk/git-crypt-${GIT_CRYPT_VERSION}.apk
 
 COPY --from=google /tmp/google-cloud-sdk /opt/google/cloud-sdk
 ENV PATH /opt/google/cloud-sdk/bin:$PATH
+
+COPY --from=google /tmp/kubernetes-helm/linux-amd64/helm /usr/local/bin/helm
+COPY --from=google /tmp/kubernetes-helm/linux-amd64/tiller /usr/local/bin/tiller
 
 COPY --from=google /usr/local/bin/kubectl /usr/local/bin/kubectl
 
