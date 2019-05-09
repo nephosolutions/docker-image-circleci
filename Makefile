@@ -1,4 +1,4 @@
-#   Copyright 2018 NephoSolutions SPRL, Sebastian Trebitz
+#   Copyright 2019 NephoSolutions SPRL, Sebastian Trebitz
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -13,20 +13,20 @@
 #   limitations under the License.
 
 DOCKER_IMAGE_OWNER	:= nephosolutions
-DOCKER_IMAGE_NAME		:= circleci
+DOCKER_IMAGE_NAME	:= circleci
 
-ALPINE_VERSION			:= 3.8
-GCLOUD_SDK_VERSION	:= 226.0.0
-GIT_CRYPT_VERSION		:= 0.6.0-r0
-HELM_VERSION				:= v2.11.0
-KUBE_VERSION				:= 1.12.3
-PACKER_VERSION			:= 1.3.2
-RUBY_VERSION				:= 2.5.3
-TERRAFORM_VERSION		:= 0.11.10
+ALPINE_VERSION		:= 3.9
+GCLOUD_SDK_VERSION	:= 245.0.0
+GIT_CRYPT_VERSION	:= 0.6.0-r1
+HELM_VERSION		:= v2.13.1
+KUBE_VERSION		:= 1.14.1
+PACKER_VERSION		:= 1.4.0
+RUBY_VERSION		:= 2.6.3
+TERRAFORM_VERSION	:= 0.11.13
 
-TERRAFORM_PROVIDER_ACME_VERSION	:= 1.0.0
+TERRAFORM_PROVIDER_ACME_VERSION	:= 0.6.0
 
-CACHE_DIR 		:= .cache
+CACHE_DIR		:= .cache
 REQUIREMENTS	:= frozen
 
 remove = $(if $(strip $1),rm -rf $(strip $1))

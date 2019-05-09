@@ -1,2 +1,4 @@
-ansible==2.7.2
-awscli==1.16.60
+ansible==2.7.10
+awscli==1.16.150
+dnsimple==1.2.0
+dnspython==1.16.0
